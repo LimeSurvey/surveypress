@@ -70,14 +70,14 @@ Make sure you know what you are doing here! Either use the 'Mapping' menu page t
 
 == Screenshots ==
 
-1. After you activate the plugin, you should see a new menu tab "SurveyPress".
-2. Configure the plugin from here! Make sure the details are correct.
-3. If the plugincan't establish a connection with given details, it will report the same.
+1. After you activate the plugin, you should see a new menu tab "SurveyPress"
+2. Configure the plugin from here! Make sure the details are correct
+3. If the plugincan't establish a connection with given details, it will report the same
 4. Map the roles and user global permissions here in this screen. e..g let's say you want that users with role 'Editor' should be able to Create surveys,Manage labels and Create users, than check the appropriate checkboxes against "Editor" role as shown!
-5. Various customization options available.
-6. Users in WordPress will be mapped to LimeSurvey.
-7. Users in WordPress will be mapped to LimeSurvey.
-8. Available public active sureys shown to a test user.
+5. Various customization options available
+6. Users in WordPress will be mapped to LimeSurvey
+7. Users in WordPress will be mapped to LimeSurvey
+8. Available public active sureys shown to a test user
 
 == Changelog ==
 
