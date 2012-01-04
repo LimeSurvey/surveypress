@@ -26,9 +26,9 @@ __Features__
 Installing and configuring SurveyPress is very easy! Follow these steps :
 
 1. Download the .zip file, unzip it and Upload the 'surveypress' to the `/wp-content/plugins/` directory.
-1. Activate the plugin 'SurveyPress' through the 'Plugins' menu in WordPress. Make sure you have read "How to use" section above.
+1. Activate the plugin 'SurveyPress' through the 'Plugins' menu in WordPress. Make sure you have read "How to use" section in "Other Notes" tab above.
 1. After the plugin has been activated successfully, you'll see a new tab in your dashboard "SurveyPress".
-1. Read "How to use" section for further use.
+1. Read "How to use" section in "Other Notes" tab above for further use.
 
 == How to use ==
 
@@ -50,7 +50,7 @@ Whenever a registered user(having an account on WordPress setup) login, this plu
 
 If the user is anyone except 'admin', he/she may or may not see a 'SurveyPress' menu tab in dashboard which lists the __Public and Active__ surveys which user can take if they wish to do so!
 
-== FAQ ==
+== Frequently Asked Questions ==
 
 = Which version of LimeSurvey is supported? =
 
@@ -71,13 +71,13 @@ Make sure you know what you are doing here! Either use the 'Mapping' menu page t
 == Screenshots ==
 
 1. After you activate the plugin, you should see a new menu tab "SurveyPress".
-1. Configure the plugin from here! Make sure the details are correct.
-1. If the plugincan't establish a connection with given details, it will report the same.
-1. Map the roles and user global permissions here in this screen. e..g let's say you want that users with role 'Editor' should be able to Create surveys,Manage labels and Create users, than check the appropriate checkboxes against "Editor" role as shown!
-1. Various customization options available.
-1. Users in WordPress will be mapped to LimeSurvey.
-1. Users in WordPress will be mapped to LimeSurvey.
-1. Available public active sureys shown to a test user.
+2. Configure the plugin from here! Make sure the details are correct.
+3. If the plugincan't establish a connection with given details, it will report the same.
+4. Map the roles and user global permissions here in this screen. e..g let's say you want that users with role 'Editor' should be able to Create surveys,Manage labels and Create users, than check the appropriate checkboxes against "Editor" role as shown!
+5. Various customization options available.
+6. Users in WordPress will be mapped to LimeSurvey.
+7. Users in WordPress will be mapped to LimeSurvey.
+8. Available public active sureys shown to a test user.
 
 == Changelog ==
 
