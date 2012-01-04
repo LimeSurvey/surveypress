@@ -1,1 +1,15 @@
 * text=auto !eol
+/readme.txt -text
+/screenshot-1.PNG -text
+/screenshot-2.PNG -text
+/screenshot-3.PNG -text
+/screenshot-4.PNG -text
+/screenshot-5.PNG -text
+/screenshot-6.PNG -text
+/screenshot-7.PNG -text
+/screenshot-8.PNG -text
+/sha256.php -text
+/survey-press.php -text
+view/config-menu.php -text
+view/mapping-menu.php -text
+view/option-menu.php -text
