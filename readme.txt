@@ -54,11 +54,11 @@ If the user is anyone except 'admin', he/she may or may not see a 'SurveyPress' 
 
 = Which version of LimeSurvey is supported? =
 
-Currently, this plugin supports LimeSurvey version 1.9x and below.
+Currently, this plugin supports LimeSurvey version 1.9x and below(i.e. every stable version!).
 
 = I can't get this plugin installed! =
 
-Please read 'Installation' and 'How to use' section above very carefully.
+Please read 'Installation' tab and 'How to use' section in 'Other Notes' tab above very carefully.
 
 = Users are not getting imported. What could be the problem? =
 
@@ -67,17 +67,6 @@ Well, make sure you have set "Import users from Wordpress to LimeSurvey?" to "Ye
 = User permissions are not getting applied properly. Possible cause? =
 
 Make sure you know what you are doing here! Either use the 'Mapping' menu page to map the roles and permissions or for default permissions for every user except 'admin', Set 'Apply default user permissions to all users?' to 'Yes' in 'Options' page. If this option is set to 'Yes', Mapping menu page settings will be ineffective. If you want custom permissions for various roles, set this option to "No" and use 'Mapping' menu page.
-
-== Screenshots ==
-
-1. After you activate the plugin, you should see a new menu tab "SurveyPress"
-2. Configure the plugin from here! Make sure the details are correct
-3. If the plugincan't establish a connection with given details, it will report the same
-4. Map the roles and user global permissions here in this screen. e..g let's say you want that users with role 'Editor' should be able to Create surveys,Manage labels and Create users, than check the appropriate checkboxes against "Editor" role as shown!
-5. Various customization options available
-6. Users in WordPress will be mapped to LimeSurvey
-7. Users in WordPress will be mapped to LimeSurvey
-8. Available public active sureys shown to a test user
 
 == Changelog ==
 
