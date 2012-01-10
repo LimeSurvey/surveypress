@@ -7,11 +7,11 @@ Requires at least: 2.0.2
 Tested up to: 3.3.1
 Stable tag: 1.0.9
 
-LimeSurvey + WordPress = A perfect combination of blog fully capable of managing surveys.
+WordPress + LimeSurvey = A perfect combination of blog fully capable of managing surveys.
 
 == Description ==
 
-Using this plugin, administrator can integrate WordPress with LimeSurvey,an open source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and registered users of WordPress site can see the public active surveys in there dashboard and take them as well! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
+Using this plugin, administrator can integrate WordPress with LimeSurvey,an open source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and registered users of WordPress site can see the public active surveys in there dashboard and take them as well! Furthermore, grant some users the ability to create survey or manage templates(if you wish!) on the basis of Roles or on per user basis! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
 
 __Features__
 
