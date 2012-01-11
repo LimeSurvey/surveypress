@@ -1,7 +1,7 @@
 === SurveyPress ===
 Contributors: down_under
 Donate link:
-Tags: LimeSurvey, survey, question, answer, test, opinion, questionaire
+Tags: limeSurvey, survey, question, answer, test, surveypress, surveys, opinion, questionaire
 , bridge, event
 Requires at least: 2.0.2
 Tested up to: 3.3.1
@@ -20,6 +20,9 @@ __Features__
 * Allow other users to create survey, manage labels/templates, create user and so on in LimeSurvey via this plugin.
 * Make your surveys public (in LimeSurvey!) so that users can see and take them directly through there dashboard in WordPress.
 * Customize the behaviour of this plugin!
+
+__Have a feature in mind?__ Create a new topic in forums!
+
 
 == Installation ==
 
