@@ -11,14 +11,14 @@ WordPress + LimeSurvey = A perfect combination of blog fully capable of managing
 
 == Description ==
 
-Using this plugin, administrator can integrate WordPress with LimeSurvey,an open source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and registered users of WordPress site can see the public active surveys in there dashboard and take them as well! Furthermore, grant some users the ability to create survey or manage templates(if you wish!) on the basis of Roles or on per user basis! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
+Using this plugin, administrator can integrate WordPress with LimeSurvey,an open source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and registered users of WordPress site can see the public(or private!) active surveys in there dashboard and take them as well! Furthermore, grant some users the ability to create survey or manage templates(if you wish!) on the basis of Roles or on per user basis! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
 
 __Features__
 
 * Import users from WordPress to LimeSurvey.
 * Map the roles of users in WordPress with user capabilities/responsibilities in LimeSurvey.
 * Allow other users to create survey, manage labels/templates, create user and so on in LimeSurvey via this plugin.
-* Make your surveys public (in LimeSurvey!) so that users can see and take them directly through there dashboard in WordPress.
+* Based on customization options, users can see public(or private!) surveys and take them directly through there dashboard in WordPress.
 * Customize the behaviour of this plugin!
 
 __Have a feature in mind?__ Create a new topic in forums!
@@ -51,7 +51,7 @@ NOTE: Do not set 'debug_mode' to true until database connection error message is
 
 Whenever a registered user(having an account on WordPress setup) login, this plugin check whether the user exists in LimeSurvey install or not. If yes, it can either update the password at LimeSurvey end or do nothing. If user doesn't exist in LimeSurvey database, it adds the user as per his/her role in WordPress. 
 
-If the user is anyone except 'admin', he/she may or may not see a 'SurveyPress' menu tab in dashboard which lists the __Public and Active__ surveys which user can take if they wish to do so!
+If the user is anyone except 'admin', he/she may or may not see a 'SurveyPress' menu tab in dashboard which lists the __Active__ surveys which user can take if they wish to do so!
 
 == Frequently Asked Questions ==
 
