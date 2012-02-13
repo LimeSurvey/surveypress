@@ -9,7 +9,7 @@
 global $db_option_host,$db_option_name,$db_option_pwd,$db_option_user,$db_option_prefix,$db_option_url;
 global $db_value_host,$db_value_name,$db_value_pwd,$db_value_user,$db_value_prefix,$db_value_url;
 
-global $show_value_survey_notification,$db_connection_error_name,$db_connection_error;
+global $list_value_public_surveys,$show_value_survey_notification,$db_connection_error_name,$db_connection_error;
 
 
 //if user is administrator
@@ -178,32 +178,46 @@ else
 {
     global $lsdb;
     //$lsdb = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
-
-    $public_surveys = $lsdb->get_results( "SELECT a.sid, b.surveyls_title, a.publicstatistics
-                            	          FROM ".$db_value_prefix."surveys AS a 
-                            			  INNER JOIN ".$db_value_prefix."surveys_languagesettings AS b 
-                            			  ON ( surveyls_survey_id = a.sid AND surveyls_language = a.language ) 
-                            			  WHERE surveyls_survey_id=a.sid 
-                            			  AND surveyls_language=a.language 
-                            			  AND a.active='Y'
-                            			  AND a.listpublic='Y'
-                            			  AND ((a.expires >= '".date("Y-m-d H:i")."') OR (a.expires is null))
-                                          AND ((a.startdate <= '".date("Y-m-d H:i")."') OR (a.startdate is null))
-                            			  ORDER BY surveyls_title" );
+    $query = "SELECT a.sid, b.surveyls_title, a.listpublic
+              FROM ".$db_value_prefix."surveys AS a 
+		      INNER JOIN ".$db_value_prefix."surveys_languagesettings AS b 
+   			  ON ( surveyls_survey_id = a.sid AND surveyls_language = a.language ) 
+   			  WHERE surveyls_survey_id=a.sid 
+   			  AND surveyls_language=a.language 
+   			  AND a.active='Y'
+              AND ((a.expires >= '".date("Y-m-d H:i")."') OR (a.expires is null))
+              AND ((a.startdate <= '".date("Y-m-d H:i")."') OR (a.startdate is null))
+              ORDER BY surveyls_title";
+                
+    $public_surveys = $lsdb->get_results( $query );
     
     //number of surveys active and public
-    $count = 0;
+    $publiccount  = 0;
+    //number of surveys active and private
+    $privatecount = 0;
     //public active surveys information
-    $survey = array(); 
+    $publicsurvey  = array(); 
+    //private active surveys information
+    $privatesurvey = array();
           
     if ( $public_surveys )
     {
         foreach ( $public_surveys as $surveyinfo )
         {
-            $survey[$count]['sid']   = $surveyinfo->sid;
-            $survey[$count]['title'] = $surveyinfo->surveyls_title;
-            
-            $count = $count + 1;
+            if ( $surveyinfo->listpublic == 'Y' )
+            {
+                $publicsurvey[$publiccount]['sid']   = $surveyinfo->sid;
+                $publicsurvey[$publiccount]['title'] = $surveyinfo->surveyls_title;
+                
+                $publiccount++;
+            }
+            else
+            {
+                $privatesurvey[$privatecount]['sid']   = $surveyinfo->sid;
+                $privatesurvey[$privatecount]['title'] = $surveyinfo->surveyls_title;
+                
+                $privatecount++;
+            }
         }
     }        
 
@@ -213,29 +227,67 @@ else
     </div>
     <br/>
     <?php 
-    if ( $count ) //there exist some public and active surveys.
+    
+    $count = $publiccount; //public surveys will always be displayed!
+    if ( ((int)$list_value_public_surveys == 1 ) )
     {
-        printf(__("You can take following %d public survey(s), if you haven't already. Take them now :"), $count);
+        $count += $privatecount; //private surveys should be shown,hence add the count
+    }
+    
+    if ( $count > 0 ) //there exist some active surveys which should be shown.
+    {
         
-        $temp = 0;
-        while ( $temp < $count )
+        printf(__("You can take following %d survey(s), if you haven't already. Take them now :"), $count );
+    ?>
+    <br /><br />
+    <?php    
+        if ( $publiccount > 0 ) //show public surveys
         {
-            if ( $temp == 0)
+            echo "<b>".__("Public Survey(s)")."</b> :";
+        
+        
+            $temp = 0;
+            while ( $temp < $publiccount )
             {
-                echo "<ul type='disc'>";
-            }
-            printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$survey[$temp]['sid']."' target='_blank'><strong> %s </strong></a> </li>"), $survey[$temp]['title']);
-            
-            if ( $temp == ( $count - 1 ) )
+                if ( $temp == 0)
+                {
+                    echo "<ul type='disc'>";
+                }
+                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$publicsurvey[$temp]['sid']."' target='_blank'><strong> %s </strong></a> </li>"), $publicsurvey[$temp]['title']);
+                
+                if ( $temp == ( $publiccount - 1 ) )
+                {
+                    echo "</ul>";
+                }
+                $temp = $temp + 1;
+            } //end while
+        }
+        
+        if ( $privatecount > 0 && ((int)$list_value_public_surveys == 1 ) ) //shwo private surveys if (they exist and should be shown)
+        {
+            echo "<b>".__("Private Survey(s)")."</b> :";
+        
+        
+            $temp = 0;
+            while ( $temp < $privatecount )
             {
-                echo "</ul>";
-            }
-            $temp = $temp + 1;
-        } //end while
+                if ( $temp == 0)
+                {
+                    echo "<ul type='disc'>";
+                }
+                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$privatesurvey[$temp]['sid']."' target='_blank'><strong> %s </strong></a> </li>"), $privatesurvey[$temp]['title']);
+                
+                if ( $temp == ( $privatecount - 1 ) )
+                {
+                    echo "</ul>";
+                }
+                $temp = $temp + 1;
+            } //end while
+        }
     }
     else
     {
-       echo _e("No public survey(s) to take at the moment."); 
+       echo _e("No survey(s) to take at the moment."); 
     }
     
     

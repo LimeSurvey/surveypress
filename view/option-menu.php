@@ -6,8 +6,8 @@
  */
  
 //global variables
-global $apply_option_default_permissions,$show_option_survey_notification,$show_option_import_users,$same_option_password;
-global $apply_value_default_permissions,$show_value_survey_notification,$show_value_import_users,$same_value_password;
+global $apply_option_default_permissions,$show_option_survey_notification,$show_option_import_users,$same_option_password,$list_option_public_surveys;
+global $apply_value_default_permissions,$show_value_survey_notification,$show_value_import_users,$same_value_password,$list_value_public_surveys;
 
 //output the heading.
 ?>
@@ -35,13 +35,14 @@ global $apply_value_default_permissions,$show_value_survey_notification,$show_va
             $show_value_survey_notification  = (int) $_POST[ $show_option_survey_notification ];
             $show_value_import_users         = (int) $_POST[ $show_option_import_users ];
             $same_value_password             = (int) $_POST[ $same_option_password ];
-                
+            $list_value_public_surveys       = (int) $_POST[ $list_option_public_surveys ];
         
             // Save the posted values in the database
             update_option( $apply_option_default_permissions, $apply_value_default_permissions );
             update_option( $show_option_survey_notification, $show_value_survey_notification );
             update_option( $show_option_import_users, $show_value_import_users );
             update_option( $same_option_password, $same_value_password );
+            update_option( $list_option_public_surveys, $list_value_public_surveys );
         
             // Put an settings updated message on the screen
 
@@ -109,6 +110,27 @@ global $apply_value_default_permissions,$show_value_survey_notification,$show_va
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="description">( If set to "Show", all users will see a "SurveyPress" tab in there dashboard  showing survey(s) to be taken, if they have been added to that survey. )</span>
         <br />
         <span class="description">Useful only when you have some active surveys listed publicily in LS!</span>
+        
+        </p>
+        </td>
+        </tr>
+        
+        <tr valign="top">
+        <th scope="row">
+        <?php _e("List private active surveys in user dashboard?", 'menu-test' ); ?>
+        </th>
+        <td>
+        <p>
+        <label>
+        <input type="radio" name="<?php echo $list_option_public_surveys; ?>" value="1" <?php if((int)$list_value_public_surveys) { ?> checked="checked" <?php } ?> />
+        <?php _e("Yes"); ?>
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>
+        <input type="radio" name="<?php echo $list_option_public_surveys; ?>" value="0" <?php if(!((int)$list_value_public_surveys)) { ?> checked="checked" <?php } ?> />
+        <?php _e("No"); ?>
+        </label>
+        <br /><span class="description">( If set to "Yes", users will see all active surveys(public+private) else only 'Public' surveys will be displayed. Effective only if 'Show user survey(s) to be taken' is set to 'Show'. )</span>
         
         </p>
         </td>

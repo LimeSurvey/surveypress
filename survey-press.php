@@ -65,7 +65,8 @@ $db_value_url    = get_option( $db_option_url );
 $apply_option_default_permissions = 'apply_default_permissions';
 $show_option_survey_notification  = 'show_survey_notification';
 $show_option_import_users         = 'import_users';
-$same_option_password              = 'same_password';
+$same_option_password             = 'same_password';
+$list_option_public_surveys       = 'list_public_survey_only';
 // respective values from database.
 // Read in existing option value from database
 if ( get_option( $apply_option_default_permissions ) == '' ) 
@@ -104,6 +105,14 @@ else
     $same_value_password = (int) get_option( $same_option_password );
 }
 
+if ( get_option( $list_option_public_surveys ) == '' ) 
+{
+    $list_value_public_surveys = 1;
+}
+else
+{
+    $list_value_public_surveys = (int) get_option( $list_option_public_surveys );
+}
 
 /**
  * Global variables assosciated with mapping screen
