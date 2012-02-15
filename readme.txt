@@ -19,6 +19,7 @@ __Features__
 * Map the roles of users in WordPress with user capabilities/responsibilities in LimeSurvey.
 * Allow other users to create survey, manage labels/templates, create user and so on in LimeSurvey via this plugin.
 * Based on customization options, users can see public(or private!) surveys and take them directly through there dashboard in WordPress.
+* If you want to let only users of your website take some specific survey, use tokens. This way survey url will be private and only registered users can take the survey.
 * Customize the behaviour of this plugin!
 
 __Have a feature in mind?__ Create a new topic in forums!
@@ -71,7 +72,21 @@ Well, make sure you have set "Import users from Wordpress to LimeSurvey?" to "Ye
 
 Make sure you know what you are doing here! Either use the 'Mapping' menu page to map the roles and permissions or for default permissions for every user except 'admin', Set 'Apply default user permissions to all users?' to 'Yes' in 'Options' page. If this option is set to 'Yes', Mapping menu page settings will be ineffective. If you want custom permissions for various roles, set this option to "No" and use 'Mapping' menu page.
 
+= Unable to use tokens properly! =
+
+Using tokens is the most trickiest part of this plugin. To use it properly, follow these steps very carefully :
+* Make a survey in LS and enable tokens for this survey.
+* After the token table for a specific survey has been created, fill-in the details asked in Customization screen.
+* After you provide with details, tokens will be made for those users in given surveys. You'll recieve the confirmation message.
+* In case you don't see the confirmation message, try again.
+* In case you see the confirmation message, __don't__ repeat the same process else multiple tokens will be made for same users!
+
+__NOTE__ : Don't make new entries for same role and same surveyid. For example, suppose you want all users with Role 'editor' to take a specific survey, than you check 'editor' checkbox and provide the surveyid and click 'Save Changes'. After you click the button, tokens will be inserted if everything is configured correctly. Now, if you repeat the same process again(i.e. check 'editor' and provide same survey id), a new token will be made for same user and that user can take the survey again if he/she know the newly generated token!(i.e. more than once!)
+
 == Changelog ==
 
 = 1.0.9 =
 * First beta release.
+
+= 1.0.9 =
+* RC1.
