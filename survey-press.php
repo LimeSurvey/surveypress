@@ -67,8 +67,11 @@ $show_option_survey_notification  = 'show_survey_notification';
 $show_option_import_users         = 'import_users';
 $same_option_password             = 'same_password';
 $list_option_public_surveys       = 'list_public_survey_only';
+$token_option_sid_list            = 'token_sid_list';
 // respective values from database.
 // Read in existing option value from database
+$token_value_sid_list = get_option( $token_option_sid_list );
+
 if ( get_option( $apply_option_default_permissions ) == '' ) 
 {
     $apply_value_default_permissions = 1;
@@ -113,6 +116,12 @@ else
 {
     $list_value_public_surveys = (int) get_option( $list_option_public_surveys );
 }
+
+$map_role_subscriber_token    = (int) get_option( 'map_role_subscriber_token' );
+$map_role_administrator_token = (int) get_option( 'map_role_administrator_token' );
+$map_role_editor_token        = (int) get_option( 'map_role_editor_token' );
+$map_role_author_token        = (int) get_option( 'map_role_author_token' );
+$map_role_contributor_token   = (int) get_option( 'map_role_contributor_token' );
 
 /**
  * Global variables assosciated with mapping screen
@@ -357,7 +366,7 @@ class Bridge_WP_LS {
                     //insert query!
                     
                     
-                    $puid = $lsdb->get_var( "SELECT uid FROM ".$db_value_prefix."users WHERE users_name = '".$adminusername."'" );
+                    $puid = $lsdb->get_var( $lsdb->prepare( "SELECT uid FROM ".$db_value_prefix."users WHERE users_name = '".$adminusername."'" ) );
                     //echo $userinfo->user_login."--".$userinfo->user_firstname." ".$userinfo->user_lastname."--".$userinfo->user_email."--".$puid;
                     //exit();
                     

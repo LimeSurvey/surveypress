@@ -177,6 +177,9 @@ if (current_user_can('manage_options'))
 else
 {
     global $lsdb;
+    //fetch currently logged in user info
+    global $current_user;
+    get_currentuserinfo();
     //$lsdb = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
     $query = "SELECT a.sid, b.surveyls_title, a.listpublic
               FROM ".$db_value_prefix."surveys AS a 
@@ -253,7 +256,27 @@ else
                 {
                     echo "<ul type='disc'>";
                 }
-                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$publicsurvey[$temp]['sid']."' target='_blank'><strong> %s </strong></a> </li>"), $publicsurvey[$temp]['title']);
+                
+                //see if there is a token for the current user
+                $query = "SELECT token
+                          FROM ".$db_value_prefix."tokens_".$publicsurvey[$temp]['sid']." 
+               			  WHERE firstname='".$current_user->user_login."' 
+               			  AND lastname='".$current_user->display_name."'
+                          AND email='".$current_user->user_email."'";
+                            
+                $token = $lsdb->get_var( $lsdb->prepare( $query ) );
+                
+                //build appropriate token string
+                if ( is_null( $token ) )
+                {
+                    $token = "";
+                }
+                else
+                {
+                    $token = "&token=".$token;
+                }
+                
+                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$publicsurvey[$temp]['sid'].$token."' target='_blank'><strong> %s </strong></a> </li>"), $publicsurvey[$temp]['title']);
                 
                 if ( $temp == ( $publiccount - 1 ) )
                 {
@@ -275,7 +298,27 @@ else
                 {
                     echo "<ul type='disc'>";
                 }
-                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$privatesurvey[$temp]['sid']."' target='_blank'><strong> %s </strong></a> </li>"), $privatesurvey[$temp]['title']);
+                
+                //see if there is a token for the current user
+                $query = "SELECT token
+                          FROM ".$db_value_prefix."tokens_".$privatesurvey[$temp]['sid']." 
+               			  WHERE firstname='".$current_user->user_login."' 
+               			  AND lastname='".$current_user->display_name."'
+                          AND email='".$current_user->user_email."'";
+                            
+                $token = $lsdb->get_var( $lsdb->prepare( $query ) );
+                
+                //build appropriate token string
+                if ( is_null( $token ) )
+                {
+                    $token = "";
+                }
+                else
+                {
+                    $token = "&token=".$token;
+                }
+                
+                printf(__("<li> <a href='".$db_value_url."/index.php?sid=".$privatesurvey[$temp]['sid'].$token."' target='_blank'><strong> %s </strong></a> </li>"), $privatesurvey[$temp]['title']);
                 
                 if ( $temp == ( $privatecount - 1 ) )
                 {
