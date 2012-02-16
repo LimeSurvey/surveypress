@@ -167,7 +167,12 @@ $map_role_contributor_manage_label    = (int) get_option( 'map_role_contributor_
 /**
  * Global LimeSurvey database connection variables.
  */
- $lsdb                     = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
+ 
+ if ( $db_value_user != '' && $db_value_name != '' && $db_value_host != '' )
+ {
+    $lsdb = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
+ }
+ 
  $db_connection_error_name = "db_connection_error";
  $db_connection_error      = get_option( $db_connection_error_name );
 

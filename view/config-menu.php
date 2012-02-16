@@ -66,7 +66,23 @@ if (current_user_can('manage_options'))
         }
         
         //check database connection
-        $temp = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
+        if ( $db_value_user != '' && $db_value_name != '' && $db_value_host != '' )
+        {
+            $temp = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );            
+        }
+        else
+        {
+            // Put an error message regarding connection fail!
+            $db_connection_error = TRUE;
+            update_option( $db_connection_error_name, $db_connection_error );
+            ?>
+            
+            <div class='updated' id='notification'>
+                <p><strong><?php _e('Connection with database failed. Please correct the settings below.', 'menu-test' ); ?></strong></p>
+            </div>
+        <?php
+        
+        }
         //if there is any error in connection, put a message for the same!
         if ( isset($temp->error) && is_object($temp->error) )
         {
