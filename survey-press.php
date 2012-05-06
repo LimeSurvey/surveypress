@@ -20,7 +20,7 @@
  Plugin URI: http://wordpress.org/extend/plugins/surveypress/
  Description: <strong>LimeSurvey + WordPress = A perfect combination of blog fully capable of managing surveys</strong>. Using this plugin, you can integrate LimeSurvey with WordPress to make registered users take surveys. Allow them to make their own survey(s) and so on.
  Version: 1.0.9
- Author URI: http://sachdevashubham.blogspot.com/
+ Author URI: http://docs.limesurvey.org/UserPage+magiclko
  License: GPLv2
  */
 
@@ -58,6 +58,40 @@ $db_value_url    = get_option( $db_option_url );
 
 
 /**
+ * Global variables assosciated with tokens screen
+ */
+
+// variables for the option menu content. 
+$option_token_basis     = 'token_basis';
+$option_token_uses      = 'token_uses';
+$token_option_sid_list  = 'token_sid_list';
+// respective values from database.
+// Read in existing option value from database
+$token_value_sid_list = get_option( $token_option_sid_list );
+
+$value_token_uses = get_option( $option_token_uses );
+if ( $value_token_uses != '' )
+{
+    $value_token_uses = (int) $value_token_uses;
+}
+
+if ( get_option( $option_token_basis ) == '' ) 
+{
+    $value_token_basis = 1;
+}
+else
+{
+    $value_token_basis = (int) get_option( $option_token_basis );
+}
+
+
+$map_role_subscriber_token    = (int) get_option( 'map_role_subscriber_token' );
+$map_role_administrator_token = (int) get_option( 'map_role_administrator_token' );
+$map_role_editor_token        = (int) get_option( 'map_role_editor_token' );
+$map_role_author_token        = (int) get_option( 'map_role_author_token' );
+$map_role_contributor_token   = (int) get_option( 'map_role_contributor_token' );
+
+/**
  * Global variables assosciated with option screen
  */
 
@@ -67,10 +101,9 @@ $show_option_survey_notification  = 'show_survey_notification';
 $show_option_import_users         = 'import_users';
 $same_option_password             = 'same_password';
 $list_option_public_surveys       = 'list_public_survey_only';
-$token_option_sid_list            = 'token_sid_list';
+
 // respective values from database.
 // Read in existing option value from database
-$token_value_sid_list = get_option( $token_option_sid_list );
 
 if ( get_option( $apply_option_default_permissions ) == '' ) 
 {
@@ -117,11 +150,6 @@ else
     $list_value_public_surveys = (int) get_option( $list_option_public_surveys );
 }
 
-$map_role_subscriber_token    = (int) get_option( 'map_role_subscriber_token' );
-$map_role_administrator_token = (int) get_option( 'map_role_administrator_token' );
-$map_role_editor_token        = (int) get_option( 'map_role_editor_token' );
-$map_role_author_token        = (int) get_option( 'map_role_author_token' );
-$map_role_contributor_token   = (int) get_option( 'map_role_contributor_token' );
 
 /**
  * Global variables assosciated with mapping screen
@@ -221,9 +249,12 @@ class Bridge_WP_LS {
         // Add hook for action executed when plugin's options page is loaded
         add_action( 'load-' . $hook_suffix_top_menu , array('Bridge_WP_LS','an_top_menu_loaded') );
         
-        // Add a second submenu to the custom top-level menu:
+        // Add a submenu to the custom top-level menu:
         add_submenu_page('an-survey-config', __('Map the roles and user permissions','menu-test'), __('Mapping','menu-test'), 'manage_options', 'an-bridge-map',array('Bridge_WP_LS', 'an_add_menu_mapping'));
-        
+          
+        // Add a submenu to the custom top-level menu:
+        add_submenu_page('an-survey-config', __('Tokens','menu-test'), __('Tokens','menu-test'), 'manage_options', 'an-bridge-tokens',array('Bridge_WP_LS', 'an_add_menu_tokens'));
+              
         // Add a submenu to the custom top-level menu:
         add_submenu_page('an-survey-config', __('Customize','menu-test'), __('Customize','menu-test'), 'manage_options', 'an-bridge-opt', array('Bridge_WP_LS', 'an_add_menu_options'));
     
@@ -255,6 +286,21 @@ class Bridge_WP_LS {
 		  wp_die( __('You do not have sufficient permissions to access this page.') );
         }
         include 'view/mapping-menu.php';
+    }
+    
+    // an_add_top_menu() displays the page content for the custom Test Toplevel menu
+    /**
+     * Bridge_WP_LS::an_add_config_menu()
+     * adds configuration page. It displays configuration options pertaining to LimeSurvey.
+     * @return
+     */
+    function an_add_menu_tokens() 
+    {
+        if (!current_user_can('manage_options')) 
+        { 
+		  wp_die( __('You do not have sufficient permissions to access this page.') );
+        }
+        include 'view/tokens-menu.php';        
     }
     
     // an_add_menu_options() displays the page content for the second submenu

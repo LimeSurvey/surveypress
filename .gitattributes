@@ -13,3 +13,4 @@
 view/config-menu.php -text
 view/mapping-menu.php -text
 view/option-menu.php -text
+view/tokens-menu.php -text

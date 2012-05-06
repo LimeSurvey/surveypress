@@ -11,6 +11,22 @@ global $db_value_host,$db_value_name,$db_value_pwd,$db_value_user,$db_value_pref
 
 global $list_value_public_surveys,$show_value_survey_notification,$db_connection_error_name,$db_connection_error;
 
+global $value_token_basis,$value_token_uses,$token_value_sid_list;
+global $map_role_subscriber_token,$map_role_administrator_token,$map_role_editor_token,$map_role_author_token,$map_role_contributor_token;
+
+
+function randomChars($length,$pattern="23456789abcdefghijkmnpqrstuvwxyz")
+{
+    $patternlength = strlen($pattern)-1;
+    for($i=0;$i<$length;$i++)
+    {
+        if(isset($key))
+            $key .= $pattern{rand(0,$patternlength)};
+        else
+            $key = $pattern{rand(0,$patternlength)};
+    }
+    return $key;
+}
 
 //if user is administrator
 if (current_user_can('manage_options')) 
@@ -196,6 +212,131 @@ else
     //fetch currently logged in user info
     global $current_user;
     get_currentuserinfo();
+    
+    //deal with tokens first!
+    if ( !$value_token_basis )
+    {
+        //check if $token_option_sid_list is not empty
+        if ( $token_value_sid_list != '' ||  $token_value_sid_list != null )
+        {
+            $sid_tokens = explode( ',', $token_value_sid_list );
+                    
+            foreach ($sid_tokens as $sid)
+            {
+                $sid = (int) $sid;
+                $lang = $lsdb->get_var( $lsdb->prepare( "SELECT language FROM ".$db_value_prefix."surveys WHERE sid=".$sid.";" ) );
+                
+                //find the role of current user
+                $user_roles = $current_user->roles;
+                $user_role = array_shift($user_roles);
+                $proceed = FALSE;
+                
+                switch ($user_role) {
+                    
+                    case "subscriber":
+                        if ( $map_role_subscriber_token )
+                            $proceed = TRUE;
+                        break;
+                    
+                    case "editor":
+                        if ( $map_role_editor_token )
+                            $proceed = TRUE;
+                        break;
+                        
+                    case "administrator":
+                        if ( $map_role_administrator_token )
+                            $proceed = TRUE;
+                        break;
+                        
+                    case "author":
+                        if ( $map_role_author_token )
+                            $proceed = TRUE;
+                        break;
+                        
+                    case "contributor":
+                        if ( $map_role_contributor_token )
+                            $proceed = TRUE;
+                        break;
+                    
+                }
+                
+                if ( $proceed )
+                {
+                    //check whether a token for this user is already inserted or not?
+                    $query = "SELECT token 
+                              FROM ".$db_value_prefix."tokens_".$sid." 
+                              WHERE firstname='".$current_user->user_login."' 
+                   			  AND lastname='".$current_user->display_name."'
+                              AND email='".$current_user->user_email."'";
+                              
+                    $token = $lsdb->get_var( $lsdb->prepare( $query ) );
+                    
+                    if ( is_null( $token ) )
+                    {
+                        //token doesn't exist, insert one!                   
+                        $isvalidtoken = false;
+                        while ($isvalidtoken == false)
+                        {
+                            $newtoken = randomChars(15);
+                            //ensure same token isn't already in database!
+                            
+                            $query = "SELECT firstname 
+                              FROM ".$db_value_prefix."tokens_".$sid." 
+                              WHERE token='".$newtoken."' 
+                   			  AND lastname='".$current_user->display_name."'
+                              AND email='".$current_user->user_email."'";
+                              
+                            $temp = $lsdb->get_var( $lsdb->prepare( $query ) );
+                            
+                            if ( is_null( $temp ) )
+                            {
+                                $isvalidtoken = true;
+                            }
+                        }
+                        
+                        $sanitizedtoken = $newtoken;
+                        
+                        $insert_token = $lsdb->insert( 
+                       	    $db_value_prefix.'tokens_'.$sid, 
+                           	array( 
+                          		'firstname' => $current_user->user_login,
+                                'lastname' => $current_user->display_name,
+                                'email' => $current_user->user_email,
+                                'emailstatus' => "OK",
+                                'token' => $sanitizedtoken,
+                                'language' => $lang,
+                                'sent' => 'N',
+                                'remindersent' => 'N',
+                                'completed' => 'N',
+                                'usesleft' => $value_token_uses
+                            ),
+                           	array( 
+                          		'%s', 
+                          		'%s',
+                                '%s', 
+                          		'%s',
+                                '%s', 
+                          		'%s',
+                                '%s',
+                                '%s',
+                                '%s',
+                                '%d'
+                           	) 
+                        );
+                    }
+                    
+                }
+                              
+                
+                
+            }
+        }
+        
+        
+        
+    }
+    
+    
     //$lsdb = new wpdb( $db_value_user, $db_value_pwd, $db_value_name, $db_value_host );
     $query = "SELECT a.sid, b.surveyls_title, a.listpublic
               FROM ".$db_value_prefix."surveys AS a 
