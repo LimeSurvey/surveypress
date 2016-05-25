@@ -1,11 +1,11 @@
 === SurveyPress ===
-Contributors: down_under
+Contributors: down_under, c_schmitz
 Donate link:
-Tags: limeSurvey, survey, question, answer, test, surveypress, surveys, opinion, questionaire
+Tags: LimeSurvey, survey, question, answer, test, surveypress, surveys, opinion, questionnaire
 , bridge, event
-Requires at least: 2.0.2
-Tested up to: 3.3.1
-Stable tag: 1.0.9
+Requires at least: 4.0.0
+Tested up to: 4.5.2
+Stable tag: 1.0.10
 
 WordPress + LimeSurvey = A perfect combination of blog fully capable of managing surveys.
 
@@ -84,6 +84,8 @@ Using tokens is the most trickiest part of this plugin. To use it properly, foll
 __NOTE__ : Don't make new entries for same role and same surveyid. For example, suppose you want all users with Role 'editor' to take a specific survey, than you check 'editor' checkbox and provide the surveyid and click 'Save Changes'. After you click the button, tokens will be inserted if everything is configured correctly. Now, if you repeat the same process again(i.e. check 'editor' and provide same survey id), a new token will be made for same user and that user can take the survey again if he/she know the newly generated token!(i.e. more than once!)
 
 == Changelog ==
+= 1.0.10 =
+* Beta release
 
 = 1.0.9 =
 * First beta release.
