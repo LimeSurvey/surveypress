@@ -19,7 +19,7 @@
  Plugin Name: SurveyPress
  Plugin URI: http://wordpress.org/extend/plugins/surveypress/
  Description: <strong>LimeSurvey + WordPress = A perfect combination of blog fully capable of managing surveys</strong>. Using this plugin, you can integrate LimeSurvey with WordPress to make registered users take surveys. Allow them to make their own survey(s) and so on.
- Version: 1.0.9
+ Version: 1.1.11
  Author URI: http://docs.limesurvey.org/UserPage+magiclko
  License: GPLv2
  */
