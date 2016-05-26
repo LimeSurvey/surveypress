@@ -82,6 +82,17 @@ Using tokens is the most trickiest part of this plugin. To use it properly, foll
 
 __NOTE__ : Don't make new entries for same role and same surveyid. For example, suppose you want all users with Role 'editor' to take a specific survey, than you check 'editor' checkbox and provide the surveyid and click 'Save Changes'. After you click the button, tokens will be inserted if everything is configured correctly. Now, if you repeat the same process again(i.e. check 'editor' and provide same survey id), a new token will be made for same user and that user can take the survey again if he/she know the newly generated token!(i.e. more than once!)
 
+== Screenshots ==
+
+1. Screenshot 1
+2. Screenshot 2
+3. Screenshot 3
+4. Screenshot 4
+5. Screenshot 5
+6. Screenshot 6
+7. Screenshot 7
+8. Screenshot 8
+
 == Changelog ==
 = 1.0.11 =
 * Beta release after a long time of inactivity. Please report any issues you encounter.
