@@ -1,8 +1,7 @@
 === SurveyPress ===
 Contributors: down_under, c_schmitz
-Donate link:
-Tags: LimeSurvey, survey, question, answer, test, surveypress, surveys, opinion, questionnaire
-, bridge, event
+Donate link: http://donate.limesurvey.org
+Tags: LimeSurvey, survey, question, answer, test, surveypress, surveys, opinion, questionnaire, bridge, event
 Requires at least: 4.0.0
 Tested up to: 4.5.2
 Stable tag: 1.0.11
@@ -11,15 +10,15 @@ WordPress + LimeSurvey = A perfect combination of blog fully capable of managing
 
 == Description ==
 
-Using this plugin, administrator can integrate WordPress with LimeSurvey,an open source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and registered users of WordPress site can see the public(or private!) active surveys in there dashboard and take them as well! Furthermore, grant some users the ability to create survey or manage templates(if you wish!) on the basis of Roles or on per user basis! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
+Using this plugin administrators can integrate WordPress with LimeSurvey, an Open Source powerful feature packed survey tool, which gives the capability of importing users from WordPress to LimeSurvey and so registered users of your WordPress site can see the open (or closed-access!) active surveys in their dashboard and take them as well! Furthermore, grant some users the ability to create surveys or manage templates (if you wish!) based on roles or per user! This plugin will be very useful for those who need a nice website/blog with the power of survey management.
 
 __Features__
 
 * Import users from WordPress to LimeSurvey.
 * Map the roles of users in WordPress with user capabilities/responsibilities in LimeSurvey.
 * Allow other users to create survey, manage labels/templates, create user and so on in LimeSurvey via this plugin.
-* Based on customization options, users can see public(or private!) surveys and take them directly through there dashboard in WordPress.
-* If you want to let only users of your website take some specific survey, use tokens. This way survey url will be private and only registered users can take the survey.
+* Based on customization options, users can see public (or private!) surveys and take them directly through their dashboard in WordPress.
+* If you want to let only users of your website take some specific survey (closed access), use tokens. This way survey url will be private and only registered users can take the survey.
 * Customize the behaviour of this plugin!
 
 __Have a feature in mind?__ Create a new topic in forums!
@@ -36,7 +35,7 @@ Installing and configuring SurveyPress is very easy! Follow these steps :
 
 == How to use ==
 
-1. Setup WordPress and LimeSurvey (1.9x version!).
+1. Setup WordPress and LimeSurvey separately.
 1. Apply this plugin.
 1. Make sure 'debug_mode' is set to false in your wp-config.php (If not, set it to false temporarily!)
 1. Click on 'SurveyPress' menu tab in your dashboard to configure it. Fill-in the "configuration" screen details.
@@ -58,7 +57,7 @@ If the user is anyone except 'admin', he/she may or may not see a 'SurveyPress' 
 
 = Which version of LimeSurvey is supported? =
 
-Currently, this plugin supports LimeSurvey version 1.9x and below(i.e. every stable version!).
+Currently, this plugin supports LimeSurvey version 2.0x and later
 
 = I can't get this plugin installed! =
 
