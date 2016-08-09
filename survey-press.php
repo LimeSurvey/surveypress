@@ -417,7 +417,7 @@ class Bridge_WP_LS {
                     //insert query!
 
 
-                    $puid = $lsdb->get_var( $lsdb->prepare( "SELECT uid FROM ".$db_value_prefix."users WHERE users_name = '".$adminusername."'" ) );
+                    $puid = $lsdb->get_var( $lsdb->prepare( "SELECT uid FROM ".$db_value_prefix."users WHERE users_name = %s", $adminusername ) );
                     //echo $userinfo->user_login."--".$userinfo->user_firstname." ".$userinfo->user_lastname."--".$userinfo->user_email."--".$puid;
                     //exit();
 
